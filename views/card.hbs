@@ -1,0 +1,35 @@
+<div id="card">
+
+    <h2>Card</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Count</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#if card.basket.length}}
+            {{#each card.basket}}
+                <tr>
+                    <th>{{title}}</th>
+                    <th>{{count}}</th>
+                    <th>
+                        <button class="btn btn-small remove-item" data-id="{{id}}">remove</button>
+                    </th>
+                </tr>
+            {{/each}}
+            {{else}}
+                <h2>No Items</h2>
+            {{/if}}
+        </tbody>
+
+        
+    </table>
+
+    <strong><span id="total-price">Total Price: {{card.totalPrice}}</span></strong>
+
+</div>

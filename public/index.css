@@ -1,0 +1,41 @@
+.nav-wrapper{
+    padding: 0 20px;
+}
+
+#adding-course-from{
+    display: block;
+    margin-top: 50px;
+}
+
+.course-price{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.course-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-block img {
+    margin: 25px 0;
+    width: 250px;
+}
+
+.big{
+    font-size: 40px !important;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

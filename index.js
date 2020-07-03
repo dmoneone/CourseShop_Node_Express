@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const exphbs  = require('express-handlebars');
+const mongoose = require('mongoose')
 
 const homeRoute = require('./Routes/Home')
 const coursesRoute = require('./Routes/Courses')
@@ -25,7 +26,8 @@ app.use('/', homeRoute)
 app.use('/courses', coursesRoute)
 app.use('/add', addRoute)
 app.use('/card', cardRoute)
-
+//qhDwY2Baknf3ESbP
+const mongoUrl = 'mongodb+srv://dmoneone:qhDwY2Baknf3ESbP@cluster0.k9fla.mongodb.net/<dbname>?retryWrites=true&w=majority'
 
 /*app.get('/', (req, res) => {
     res.status(200)
@@ -54,6 +56,18 @@ app.get('/add', (req, res) => {
 
 
 const port = process.env.port || 3000
-app.listen(port, () => {
-    console.log(`Server has been launched. Port: ${port}`)
-})
+
+const start = async (port) => {
+    try { 
+        const mongoUrl = 'mongodb+srv://dmoneone:qhDwY2Baknf3ESbP@cluster0.k9fla.mongodb.net/shop'
+        await mongoose.connect(mongoUrl, {useNewUrlParser: true})
+
+        app.listen(port, () => {
+            console.log(`Server has been launched. Port: ${port}`)
+        })
+    } catch(e) {
+        throw e
+    }
+}
+
+start(port)

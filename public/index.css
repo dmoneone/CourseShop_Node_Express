@@ -39,3 +39,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
+form.remove-item button{
+    margin-top: 20px;
+}

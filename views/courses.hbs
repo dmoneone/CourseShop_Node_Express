@@ -16,10 +16,10 @@
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel, libero!</p>
                         </div>
                         <div class="card-action actions">
-                        <a target="_blank" href="/courses/{{id}}">Open card</a>
-                        <a href="/courses/{{id}}/edit?allow=true">Edit</a>
+                        <a target="_blank" href="/courses/{{_id}}">Open card</a>
+                        <a href="/courses/{{_id}}/edit?allow=true">Edit</a>
                         <form action="/card/add" method="POST">
-                            <input type="hidden" name="id" value={{id}}>
+                            <input type="hidden" name="id" value={{_id}}>
                             <button class="btn btn-primary">Buy</button>
                         </form>
                         </div>

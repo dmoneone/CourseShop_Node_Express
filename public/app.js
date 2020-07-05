@@ -1,12 +1,20 @@
-document.querySelectorAll('.course-price').forEach(node => {
-    node.textContent = new Intl.NumberFormat('ru-RU', {
-        currency: 'rub',
+const fixPrice = (price, format, currency) => {
+    return new Intl.NumberFormat(format, {
+        currency: currency,
         style: 'currency'
-    }).format(node.textContent)
+    }).format(price)
+}
+
+document.querySelectorAll('.course-price').forEach(node => {
+    node.textContent = fixPrice(node.textContent, 'ru-RU', 'rub')
 })
 
-const $card = document.querySelector('#card')
+const $totalCardPrice = document.querySelector('#total-price')
+if($totalCardPrice) {
+    $totalCardPrice.textContent = fixPrice($totalCardPrice.textContent.split(':')[1], 'ru-RU', 'rub')
+}
 
+const $card = document.querySelector('#card')
 if($card) {
     $card.addEventListener('click', e => {
         if(e.target.classList.contains('remove-item')) {
@@ -33,6 +41,7 @@ if($card) {
                   else{
                     $card.innerHTML = '<p>No items</p>'
                   }
+                  $totalCardPrice.textContent = fixPrice($totalCardPrice.textContent.split(':')[1], 'ru-RU', 'rub')
               })
         }
     })

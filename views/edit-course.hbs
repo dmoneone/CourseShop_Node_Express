@@ -14,8 +14,12 @@
           <label for="img">Url to image</label>
         </div>
         <div class="input-field">
-          <input name="id" type="hidden" value={{course.id}}>
+          <input name="id" type="hidden" value={{course._id}}>
         </div>
         <button class="btn btn-primary">Submit</button>
+    </form>
+    <form action="/courses/remove" method="POST" class="remove-item">
+        <input name="id" type="hidden" value={{course._id}}>
+        <button class="btn red">Delete</button>
     </form>
 </div>

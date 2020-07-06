@@ -8,7 +8,8 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const homeRoute = require('./Routes/Home')
 const coursesRoute = require('./Routes/Courses')
 const addRoute = require('./Routes/Add')
-const cardRoute = require('./Routes/Card')
+const cardRoute = require('./Routes/Card');
+const User = require('./models/User');
 
 const app = express()
 
@@ -22,6 +23,16 @@ app.engine('hbs', hbs.engine) //reg of engine
 app.set('view engine', 'hbs') // using
 app.set('views', 'views')
 
+app.use( async (req, res, next) => {
+    try {
+        const user = await User.findById('5f030bdfd4c0613f6c7ebade')
+        req.user = user
+        next()
+    } catch(e) {
+        throw e
+    }
+})
+
 app.use(express.static(path.join(__dirname, 'public'))) //for linking css files from 'public' dir in the root of proj | static dir | for client's scripts
 app.use(express.urlencoded({extended: true})) //middleware for getting post data | body parser
 //routers
@@ -30,7 +41,6 @@ app.use('/courses', coursesRoute)
 app.use('/add', addRoute)
 app.use('/card', cardRoute)
 //qhDwY2Baknf3ESbP
-const mongoUrl = 'mongodb+srv://dmoneone:qhDwY2Baknf3ESbP@cluster0.k9fla.mongodb.net/<dbname>?retryWrites=true&w=majority'
 
 /*app.get('/', (req, res) => {
     res.status(200)
@@ -64,6 +74,20 @@ const start = async (port) => {
     try { 
         const mongoUrl = 'mongodb+srv://dmoneone:qhDwY2Baknf3ESbP@cluster0.k9fla.mongodb.net/shop'
         await mongoose.connect(mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+
+        const candidate = await User.findOne()
+
+        if(!candidate) {
+            const user = new User({
+                email: 'kirildim16@gmail.com',
+                name: 'dmoneone',
+                cart: {
+                    items: []
+                }
+            })
+
+            await user.save()
+        }
 
         app.listen(port, () => {
             console.log(`Server has been launched. Port: ${port}`)

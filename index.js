@@ -25,7 +25,7 @@ app.set('views', 'views')
 
 app.use( async (req, res, next) => {
     try {
-        const user = await User.findById('5f030bdfd4c0613f6c7ebade')
+        const user = await User.findById('5f04b73ab64a632f407beca2')
         req.user = user
         next()
     } catch(e) {

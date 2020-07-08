@@ -27,4 +27,23 @@ const userSchema = new Schema({
     }
 })
 
+userSchema.methods.addCourseToCart = function(course) {
+    const clonedItems = [...this.cart.items]
+    const ind = clonedItems.findIndex((item => {
+        return item.courseId.toString() === course._id.toString()
+    }))
+
+    if(ind >= 0) {
+        clonedItems[ind].count++
+    } else {
+        clonedItems.push({
+            count: 1,
+            courseId: course._id
+        })
+    }
+
+    this.cart = {items: clonedItems}
+    return this.save()
+}
+
 module.exports = model('User', userSchema)

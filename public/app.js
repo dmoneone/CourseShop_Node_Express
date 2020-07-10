@@ -22,9 +22,10 @@ if($card) {
             fetch('/card/remove/' + id, {
                 method: 'delete'
             }).then(res => res.json())
-              .then(card => {
-                  if(card.basket.length){
-                    const html = card.basket.map(c => {
+              .then(cart => {
+                  console.log(cart)
+                  if(cart.courses.length){
+                    const html = cart.courses.map(c => {
                         return `
                           <tr>
                               <th>${c.title}</th>
@@ -36,12 +37,13 @@ if($card) {
                         `
                     }).join()
                     $card.querySelector('tbody').innerHTML = html
-                    $card.querySelector('#total-price').innerHTML = card.totalPrice
+                    $card.querySelector('#total-price').innerHTML = cart.totalPrice
                   }
                   else{
                     $card.innerHTML = '<p>No items</p>'
                   }
-                  $totalCardPrice.textContent = fixPrice($totalCardPrice.textContent.split(':')[1], 'ru-RU', 'rub')
+                  
+                  $totalCardPrice.textContent = fixPrice($totalCardPrice.textContent, 'ru-RU', 'rub')
               })
         }
     })

@@ -22,8 +22,11 @@ router.get('/', async (req, res) => {
                     .populate('cart.items.courseId')
                     .execPopulate()
 
-    const cart = mapItems(user.cart.items)
-    cart.totalPrice = getTotalPrice(cart)
+    const courses = mapItems(user.cart.items)
+    let cart = {
+        courses,
+        totalPrice: getTotalPrice(courses)
+    }
 
     res.render('card', {
         title: 'Card',
@@ -39,9 +42,16 @@ router.post('/add', async (req, res) => {
 })
 
 router.delete('/remove/:id', async (req, res) => {
-    /*id = req.params.id
-    const card = await Basket.remove(id)
-    res.status(200).json(card)*/
+    let id = req.params.id
+    await req.user.removeItemFromCart(id)
+    const user = await req.user.populate('cart.items.courseId').execPopulate()
+    const courses = mapItems(user.cart.items)
+    let cart = {
+        courses,
+        totalPrice: getTotalPrice(courses)
+    }
+    console.log(cart)
+    res.status(200).json(cart)
 })
 
 module.exports = router

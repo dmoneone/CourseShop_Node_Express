@@ -1,21 +1,39 @@
 const {Router} = require('express')
 const Course = require('../models/Course')
-const User = require('../models/User')
 const router = Router()
 
+const mapItems = (items) => {
+    return items.map(c => ({
+        title: c.courseId.title,
+        count: c.count,
+        id: c.courseId._id,
+        price: c.courseId.price
+    }))
+}
+
+function getTotalPrice(items) {
+    return items.reduce((sum, current) => {
+        return sum += current.price * current.count
+    }, 0)
+}
+
 router.get('/', async (req, res) => {
-    res.json({test: 5})
-    /*const card = await Basket.fetch()
+    const user = await req.user
+                    .populate('cart.items.courseId')
+                    .execPopulate()
+
+    const cart = mapItems(user.cart.items)
+    cart.totalPrice = getTotalPrice(cart)
+
     res.render('card', {
         title: 'Card',
         isCard: true,
-        card
-    })*/
+        cart
+    })
 })
 
 router.post('/add', async (req, res) => {
     const course = await Course.findById(req.body.id)
-    console.log(req.user)
     await req.user.addCourseToCart(course)
     res.redirect('/card')
 })

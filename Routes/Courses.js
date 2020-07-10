@@ -5,7 +5,7 @@ const router = Router()
 router.get('/', async (req, res) => {
     //let courses = await Courses.getAllData()
     let courses = await Course.find().populate('userId', 'email name') //get all data if without params
-    console.log(courses, 'courses_______')
+    //console.log(courses, 'courses_______')
     res.status(200)
     res.render('courses', {
         title: 'courses',

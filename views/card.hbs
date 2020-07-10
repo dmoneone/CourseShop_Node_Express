@@ -12,8 +12,8 @@
         </thead>
 
         <tbody>
-            {{#if card.basket.length}}
-            {{#each card.basket}}
+            {{#if cart.length}}
+            {{#each cart}}
                 <tr>
                     <th>{{title}}</th>
                     <th>{{count}}</th>
@@ -30,6 +30,6 @@
         
     </table>
 
-    <strong><span id="total-price">Total Price: {{card.totalPrice}}</span></strong>
+    <strong><span id="total-price">Total Price: {{cart.totalPrice}}</span></strong>
 
 </div>

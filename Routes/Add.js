@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.status(200)
     res.render('add', {
         title: 'add',
-        idAdd: true
+        isAdd: true
     })
 })
 

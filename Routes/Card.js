@@ -28,6 +28,7 @@ router.get('/', async (req, res) => {
         totalPrice: getTotalPrice(courses)
     }
 
+
     res.render('card', {
         title: 'Card',
         isCard: true,

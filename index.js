@@ -9,6 +9,7 @@ const homeRoute = require('./Routes/Home')
 const coursesRoute = require('./Routes/Courses')
 const addRoute = require('./Routes/Add')
 const cardRoute = require('./Routes/Card');
+const orderRoute = require('./Routes/Order');
 const User = require('./models/User');
 
 const app = express()
@@ -40,6 +41,7 @@ app.use('/', homeRoute)
 app.use('/courses', coursesRoute)
 app.use('/add', addRoute)
 app.use('/card', cardRoute)
+app.use('/orders', orderRoute)
 //qhDwY2Baknf3ESbP
 
 /*app.get('/', (req, res) => {

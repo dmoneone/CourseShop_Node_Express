@@ -1,0 +1,36 @@
+<div class="auth">
+    <div class="row">
+        <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a href="#login">Login</a></li>
+            <li class="tab col s3"><a class="active" href="#reg">Reg</a></li>
+        </ul>
+        </div>
+        <div id="login" class="col s6 offset-3s">
+            <form action="/auth/login" method="POST" id="logIn-from">
+                <div class="input-field">
+                    <input placeholder="email" name="email" id="email-login" type="text" class="validate" required>
+                    <label for="email-login">Email</label>
+                </div>
+                <div class="input-field">
+                    <input placeholder="password" type="password" name="password" id="password-login" type="text" class="validate" required>
+                    <label for="password-login">Password</label>
+                </div>
+                <button class="btn btn-primary">Ok</button>
+            </form>
+        </div>
+        <div id="reg" class="col s6 offset-3s">
+            <form action="/auth/reg" method="POST" id="reg-from">
+                <div class="input-field">
+                    <input placeholder="email" name="email" id="email-reg" type="text" class="validate" required>
+                    <label for="email-reg">Email</label>
+                </div>
+                <div class="input-field">
+                    <input placeholder="password" type="password" name="password" id="password-reg" type="text" class="validate" required>
+                    <label for="password-reg">Password</label>
+                </div>
+                <button class="btn btn-primary">Ok</button>
+            </form>
+        </div>
+    </div>
+</div>

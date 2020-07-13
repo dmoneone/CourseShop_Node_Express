@@ -48,3 +48,5 @@ if($card) {
         }
     })
 }
+
+var instance = M.Tabs.init(document.querySelector('.tabs'));

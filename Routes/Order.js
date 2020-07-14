@@ -7,15 +7,7 @@ router.get('/', auth, async (req, res) => {
     const orders = await Order.find({
        'user.userId': req.user._id
     }).populate('user.userId').populate('courses.course')
-    orders[0].courses.forEach((item) => console.log(item))
-    console.log(orders)
 
-    console.log(orders.map(order => ({
-        ...order._doc,
-        totalPrice: order.courses.reduce((sum, current) => {
-            return sum += current.course.price * current.count
-        }, 0)
-    }))  )
     res.status(200)
     res.render('orders', {
         title: 'orders',

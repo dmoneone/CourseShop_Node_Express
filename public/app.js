@@ -18,9 +18,13 @@ const $card = document.querySelector('#card')
 if($card) {
     $card.addEventListener('click', e => {
         if(e.target.classList.contains('remove-item')) {
+            const csrf = e.target.dataset.csrf
             const id = e.target.dataset.id
             fetch('/card/remove/' + id, {
-                method: 'delete'
+                method: 'delete',
+                headers: {
+                    'X-XSRF-TOKEN': csrf
+                }
             }).then(res => res.json())
               .then(cart => {
                   console.log(cart)

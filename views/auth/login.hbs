@@ -16,6 +16,7 @@
                     <input placeholder="password" type="password" name="password" id="password-login" type="text" class="validate" required>
                     <label for="password-login">Password</label>
                 </div>
+                <input type="hidden" value={{csurf}} name="_csrf">
                 <button class="btn btn-primary">Ok</button>
             </form>
         </div>
@@ -37,6 +38,7 @@
                     <input placeholder="repeat password" type="password" name="repeat" id="repeat-password-reg" type="text" class="validate" required>
                     <label for="repeat-password-reg">Password</label>
                 </div>
+                <input type="hidden" value={{csurf}} name="_csrf">
                 <button class="btn btn-primary">Ok</button>
             </form>
         </div>

@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongodb-session')(session)
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const mongoUrl = 'mongodb+srv://dmoneone:qhDwY2Baknf3ESbP@cluster0.k9fla.mongodb.net/shop'
 const userMidddleware = require('./middlewares/user')
+const csurf = require('csurf')
 
 const homeRoute = require('./Routes/Home')
 const coursesRoute = require('./Routes/Courses')
@@ -52,8 +53,10 @@ app.use(session({
     saveUninitialized: false,
     store: mongoStore
 }))
+app.use(csurf())
 app.use((req, res, next) => {
     res.locals.isAuth = req.session.isAuth
+    res.locals.csurf = req.csrfToken()
     next()
 })
 app.use(userMidddleware)

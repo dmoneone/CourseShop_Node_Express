@@ -20,7 +20,7 @@
     "connect-mongodb-session": "^2.3.3",
     "csurf": "^1.11.0",
     "express": "^4.17.1",
-    "express-handlebars": "^4.0.4",
+    "express-handlebars": "^5.3.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.9.21",
     "shortid": "^2.2.15"
